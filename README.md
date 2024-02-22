@@ -1,272 +1,70 @@
-# Frappe Better Select Control
+<div align="center">
+  <img src="https://grow.empress.eco/uploads/default/original/2X/1/1f1e1044d3864269d2a613577edb9763890422ab.png" alt="OptiSelect Logo">
+</div>
+<p align="center">
+Enhance your select control experience with OptiSelect - providing support for option groups in a streamlined, user-friendly format.
+<br />
+<a href="https://empress.eco/">Explore the Docs</a>
+·
+<a href="https://github.com/empress-eco/better_select_control/issues/new?assignees=kid1194&labels=bug&template=bug_report.md&title=%5BBUG%5D">Report Bug</a>
+·
+<a href="https://github.com/empress-eco/better_select_control/issues">Request Feature</a>
+</p>
 
-A small plugin for Frappe that adds the support of option groups to the select control.
+## About OptiSelect
 
----
+### 📖 Overview
+OptiSelect is a versatile plugin that introduces option group support to your select control. Ideal for developers and users seeking an organized and intuitive way to manage selection options.
 
-### Table of Contents
+### 🌟 Key Features
+- Supports single and multiple option groups
+- Allows normal options to follow option groups
+- Empty group labels are permissible
+- Placeholder options for an enhanced user experience
 
-- [Requirements](#requirements)
-- [Setup](#setup)
-  - [Install](#install)
-  - [Update](#update)
-  - [Uninstall](#uninstall)
-- [Usage](#usage)
-- [Examples](#examples)
-  - [Single Option Group](#single-option-group)
-  - [Multiple Option Group](#multiple-option-groups)
-  - [Normal Options After Option Group](#normal-options-after-option-group)
-  - [Empty Option Group Label](#empty-option-group-label)
-  - [Placeholder Option](#placeholder-option)
-- [Issues](#issues)
-- [License](#license)
+### 🛠 Built With
+- Framework (Version >= v13.0.0)
 
----
+## Getting Started
 
-### Requirements
+### Prerequisites
+The Framework version should be v13.0.0 or above.
 
-- Frappe >= v13.0.0
+### Installation
+Follow these simple steps to set up a development environment:
 
----
+```sh
+# Navigate to bench directory
+cd ~/Empress-bench
 
-### Setup
+# Clone the Github repository (Required only once)
+git clone https://github.com/empress-eco/better_select_control.git
 
-⚠️ *Important* ⚠️
+# Build the plugin (Required only once)
+bench build --app Empress_better_select_control
 
-*Do not forget to replace [sitename] with the name of your site in all commands.*
-
-#### Install
-1. Go to bench directory
-
-```
-cd ~/frappe-bench
-```
-
-2. Get plugin from Github
-
-*(Required only once)*
-
-```
-bench get-app https://github.com/kid1194/frappe-better-select-control
+# Install the plugin on your specific site (Replace [sitename] with your site's name)
+bench --site [sitename] install-app Empress_better_select_control
 ```
 
-3. Build plugin
+## Usage
+Refer to the [documentation](https://empress.eco/) for practical usage tips and a quick start guide on OptiSelect.
 
-*(Required only once)*
+## Contributing
+We welcome community contributions! Here's how you can contribute:
 
-```
-bench build --app frappe_better_select_control
-```
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-4. Install plugin on a specific site
-
-```
-bench --site [sitename] install-app frappe_better_select_control
-```
-
-5. Check the [usage](#usage) & [examples](#examples) below
-
-#### Update
-1. Go to app directory
-
-```
-cd ~/frappe-bench/apps/frappe_better_select_control
-```
-
-2. Get updates from Github
-
-```
-git pull
-```
-
-3. Go to bench directory
-
-```
-cd ~/frappe-bench
-```
-
-4. Build plugin
-
-```
-bench build --app frappe_better_select_control
-```
-
-5. Update a specific site
-
-```
-bench --site [sitename] migrate
-```
-
-6. (Optional) Restart bench
-
-```
-bench restart
-```
-
-#### Uninstall
-1. Go to bench directory
-
-```
-cd ~/frappe-bench
-```
-
-2. Uninstall plugin from a specific site
-
-```
-bench --site [sitename] uninstall-app frappe_better_select_control
-```
-
-3. Remove plugin from bench
-
-```
-bench remove-app frappe_better_select_control
-```
-
-4. (Optional) Restart bench
-
-```
-bench restart
-```
-
----
-
-### Usage
-
-1. Go to Customization > Customize Form
-2. Enter the form type/name (ex: 'User')
-3. Scroll down to the form fields area and edit the select fields you want
-4. In the *options* property of the fields, add a hashtag (*#*) before the option text to make it a group label
-5. To close a group just add a single hashtag (*#*) in a new line
-6. Add an exclamation mark *!* before a hashtag (*#*) at the beginning of the option text to stop it from being used as a group label
-
-⚠️ **Important** ⚠️
-
-You can't modify the original fields of a doctype, so create a new field or clone and modify the entire doctype.
-
----
-
-### Examples
-
-#### Single Option Group
-- Options:
-```
-One
-Two
-#Three
-Four
-Five
-```
-- Result HTML:
-```
-<option value="One">One</option>
-<option value="Two">Two</option>
-<optgroup label="Three">
-    <option value="Four">Four</option>
-    <option value="Five">Five</option>
-</optgroup>
-```
-
-#### Multiple Option Groups
-- Options:
-```
-#One
-Two
-Three
-#Four
-Five
-Six
-```
-- Result HTML:
-```
-<optgroup label="One">
-    <option value="Two">Two</option>
-    <option value="Three">Three</option>
-</optgroup>
-<optgroup label="Four">
-    <option value="Five">Five</option>
-    <option value="Six">Six</option>
-</optgroup>
-```
-
-#### Normal Options After Option Group
-- Options:
-
-```
-One
-Two
-#Three
-Four
-Five
-#
-Six
-```
-- Result HTML:
-```
-<option value="One">One</option>
-<option value="Two">Two</option>
-<optgroup label="Three">
-    <option value="Four">Four</option>
-    <option value="Five">Five</option>
-</optgroup>
-<option value="Six">Six</option>
-```
-
-#### Empty Option Group Label
-- Options:
-
-```
-One
-Two
-#
-Three
-Four
-Five
-#
-Six
-```
-- Result HTML:
-```
-<option value="One">One</option>
-<option value="Two">Two</option>
-<optgroup label="">
-    <option value="Three">Three</option>
-    <option value="Four">Four</option>
-    <option value="Five">Five</option>
-</optgroup>
-<option value="Six">Six</option>
-```
-
-#### Placeholder Option
-- Options:
-
-```
-$Select..
-One
-Two
-#Three
-Four
-Five
-#
-Six
-```
-- Result HTML:
-```
-<option value="" disabled hidden selected>Select...</option>
-<option value="One">One</option>
-<option value="Two">Two</option>
-<optgroup label="Three">
-    <option value="Four">Four</option>
-    <option value="Five">Five</option>
-</optgroup>
-<option value="Six">Six</option>
-```
-
----
-
-### Issues
-If you find bug in the plugin, please create a [bug report](https://github.com/kid1194/frappe-better-select-control/issues/new?assignees=kid1194&labels=bug&template=bug_report.md&title=%5BBUG%5D) and let us know about it.
-
----
+## License and Acknowledgements
 
 ### License
-MIT
+This project is under the MIT License. Your contributions are also licensed under the MIT License.
+
+### Acknowledgements
+We extend our heartfelt gratitude to the [Empress Community](https://Empress.io/). Their innovation and dedication have provided the essential tools that power OptiSelect. We appreciate their pioneering work and ongoing support. 
+
+We also thank [Empress](https://empress.eco/) for their unwavering support.
